@@ -6,8 +6,8 @@
     <div>
       <h3>Instructions</h3>
       <ol>
-        <li>Guess the indenity of the blurry celebrity</li>
-        <li>Win more points by correctly indentifying the blurriest photo</li>
+        <li>Guess the indenity of the blurry celebrity.</li>
+        <li>Win more points by correctly identifying the blurriest photo!</li>
       </ol>
     </div>
 
@@ -17,16 +17,16 @@
       
     <div class="blur-buttons">
       <input type="number" v-model="blurryAmount">
-      <button v-on:click="blurryAmount = 50">50 %</button>
-      <button v-on:click="blurryAmount = 40">40 %</button>
-      <button v-on:click="blurryAmount = 30">30 %</button>
-      <button v-on:click="blurryAmount = 20">20 %</button>
-      <button v-on:click="blurryAmount = 10">10 %</button>
-      <button v-on:click="blurryAmount = 0">0 %</button>
+      <button v-on:click="blurryAmount = 50">5</button>
+      <button v-on:click="blurryAmount = 40">4</button>
+      <button v-on:click="blurryAmount = 30">3</button>
+      <button v-on:click="blurryAmount = 20">2</button>
+      <button v-on:click="blurryAmount = 10">1</button>
+      <button v-on:click="blurryAmount = 0">0</button>
     </div>
 
     <div class="photo-container">
-      <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" src="/images/JenniferLawrence.jpg" alt="">
+      <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" src="/images/JasonMomoa.jpg" alt="">
     </div>
 
     <div>
@@ -47,7 +47,7 @@
 
 .photo-container {
   overflow: hidden;
-  width: 800px;
+  width: 600px;
   margin: 0 auto;
 }
 </style>
