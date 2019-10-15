@@ -12,7 +12,7 @@
     </div>
 
     <div>
-      <button v-on:click="gamePlay">Start</button>
+      <button v-on:click="startQuiz">Start</button>
     </div>
       
     <div class="blur-buttons">
@@ -29,24 +29,20 @@
       <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" src="/images/JenniferLawrence.jpg" alt="">
     </div>
 
-    <div class="multiple-choice-options">
-      <ol type="A">
-        <li><button v-on:click="selectName()">Name</button></li>
-        <li><button v-on:click="selectName()">Name</button></li>
-        <li><button v-on:click="selectName()">Name</button></li>
-        <li><button v-on:click="selectName()">Name</button></li>
-        <li><button v-on:click="selectName()">Name</button></li>
-      </ol>
-    </div> -->
-
-
+    <div class="multiple-choice-container">
+      <button v-on:click="selectName()">A. {{ quizName }}</button>
+      <button v-on:click="selectName()">B. {{ quizName }}</button>        
+      <button v-on:click="selectName()">C. {{ quizName }}</button>
+      <button v-on:click="selectName()">D. {{ quizName }}</button>
+      <button v-on:click="selectName()">E. {{ quizName}}</button>
+    </div>
 
 <!-- <div class="photo-from-rails">
       <img v-bind:src="images.photo" alt="blurry photo">
     </div> -->
 
     <div>
-      <h2>Score: {{ score }} </h2>
+      <h2>Score: {{ currentScore }} </h2>
     </div> 
  
     <div>
@@ -77,6 +73,7 @@ export default {
       resultsStage: false,
       currentPhoto: false,
       blurryAmount: 50,
+      quizName: {},
       currentScore: 0,
       image: ""
 
@@ -84,12 +81,13 @@ export default {
   },
   created: function() {},
   methods: {
+    startQuiz: function() {},
     setFile: function(event) {
       if (event.target.files.length > 0) {
         this.image = event.target.files[0];
       }
     },
-    gamePlay: function() {
+    selectName: function() {
     }
   }
 };

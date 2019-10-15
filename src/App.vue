@@ -35,20 +35,5 @@ button{
   margin: 0 0.25rem;
   
   transition:0.3s;
-  
-  &:hover{
-    cursor: pointer;
-    background: #ECEFF1;
-    border-color:rgba(0,0,0,0.25);
-  }
-  &.is-active{
-  background: $primary_color;
-  color: white;
-  border-color: transparent;
-  
-  &:hover{
-    background: darken($primary_color,10%);
-  }
-  }
 }
 </style>
