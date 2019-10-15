@@ -4,7 +4,7 @@
       <h1>Incognito Quiz</h1>
     </div>
     <div>
-      <h3>Instructions</h3>
+      <h3>Instructions:</h3>
       <ol>
         <li>Guess the indenity of the blurry celebrity.</li>
         <li>Win more points by correctly identifying the blurriest photo!</li>
@@ -26,8 +26,24 @@
     </div>
 
     <div class="photo-container">
-      <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" src="/images/JasonMomoa.jpg" alt="">
+      <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" src="/images/JenniferLawrence.jpg" alt="">
     </div>
+
+    <div class="multiple-choice-options">
+      <ol type="A">
+        <li><button v-on:click="selectName()">Name</button></li>
+        <li><button v-on:click="selectName()">Name</button></li>
+        <li><button v-on:click="selectName()">Name</button></li>
+        <li><button v-on:click="selectName()">Name</button></li>
+        <li><button v-on:click="selectName()">Name</button></li>
+      </ol>
+    </div> -->
+
+
+
+<!-- <div class="photo-from-rails">
+      <img v-bind:src="images.photo" alt="blurry photo">
+    </div> -->
 
     <div>
       <h2>Score: {{ score }} </h2>
@@ -56,11 +72,23 @@
 export default {
   data: function() {
     return {
-      blurryAmount: 50
+      introStage: false,
+      quizStage: false,
+      resultsStage: false,
+      currentPhoto: false,
+      blurryAmount: 50,
+      currentScore: 0,
+      image: ""
+
     };
   },
   created: function() {},
   methods: {
+    setFile: function(event) {
+      if (event.target.files.length > 0) {
+        this.image = event.target.files[0];
+      }
+    },
     gamePlay: function() {
     }
   }
