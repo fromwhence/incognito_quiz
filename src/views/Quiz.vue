@@ -26,27 +26,32 @@
       <button v-on:click="blurryAmount = 0">0</button>
     </div>
 
-    <div class="photo-container">
-      <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" src="/images/Rihanna.jpeg" alt="">
-    </div>
+    <div class="main-quiz-content-container">
+      <div class="photo-container">
+        <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" v-bind:src="currentQuestion.imagePath" alt="">
+      </div>
 
-    <div class="multiple-choice-container">
-      <button v-on:click="selectName('A')">A. {{ currentQuestion.possibleAnswers["A"] }}</button>
-      <button v-on:click="selectName('B')">B. {{ currentQuestion.possibleAnswers["B"] }}</button>        
-      <button v-on:click="selectName('C')">C. {{ currentQuestion.possibleAnswers["C"] }}</button>
-      <button v-on:click="selectName('D')">D. {{ currentQuestion.possibleAnswers["D"] }}</button>
-      <button v-on:click="selectName('E')">E. {{ currentQuestion.possibleAnswers["E"]}}</button>
+      <div>
+        <h2>Score: {{ currentScore }} </h2>
+      </div> 
+
+      <div class="multiple-choice-container">
+        <button v-on:click="selectName('A')">A. {{ currentQuestion.possibleAnswers["A"] }}</button>
+        <button v-on:click="selectName('B')">B. {{ currentQuestion.possibleAnswers["B"] }}</button>        
+        <button v-on:click="selectName('C')">C. {{ currentQuestion.possibleAnswers["C"] }}</button>
+        <button v-on:click="selectName('D')">D. {{ currentQuestion.possibleAnswers["D"] }}</button>
+        <button v-on:click="selectName('E')">E. {{ currentQuestion.possibleAnswers["E"] }}</button>
+      </div>
     </div>
 
 <!-- <div class="photo-from-rails">
       <img v-bind:src="images.photo" alt="blurry photo">
     </div> -->
 
-    <div>
-      <h2>Score: {{ currentScore }} </h2>
-    </div> 
+
  
-    <div>
+    <div>   
+      <button v-on:click="nextQuestion()">Next Image</button>
       <button v-on:click="quitQuiz()">Quit Quiz</button>
     </div>
 
@@ -81,6 +86,7 @@ export default {
       currentQuestionIndex: 0,
       currentQuestion: {
         celebrity: "",
+        imagePath: "",
         possibleAnswers: {
           A: "",
           B: "",
@@ -93,6 +99,7 @@ export default {
       quizQuestions:[
       {
         celebrity: "Jason Momoa",
+        imagePath: "/images/JasonMomoa.jpg",
         possibleAnswers: {
           A: "Roman Reigns",
           B: "Jack Matthews",
@@ -176,12 +183,23 @@ export default {
   },
   methods: {
     startQuiz: function() {},
+    // playQuiz: function() {
+
+    //   // body...
+    // },
     setFile: function(event) {
       if (event.target.files.length > 0) {
         this.image = event.target.files[0];
       }
     },
-    selectName: function() {
+    selectName: function(option) {
+      console.log(option);
+      console.log(this.currentQuestion.correctAnswer);
+      if (option === this.currentQuestion.correctAnswer) {
+        this.blurryAmount = 0;
+      } else {
+        this.blurryAmount -= 10;
+      }
     }
   }
 };
