@@ -27,4 +27,13 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+button{
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(0,0,0,0.25);
+  border-radius: 5rem;
+  margin: 0 0.25rem;
+  
+  transition:0.3s;
+}
 </style>
