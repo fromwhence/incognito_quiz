@@ -1,7 +1,8 @@
 <template>
   <div class="quiz">
     <div>
-      <h1>Incognito Quiz</h1>
+
+      <h1>INCOGNITO QUIZ</h1>
     </div>
     <div>
       <h3>Instructions:</h3>
@@ -26,7 +27,7 @@
     </div>
 
     <div class="photo-container">
-      <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" src="/images/JasonMomoa.jpg" alt="">
+      <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" src="/images/Rihanna.jpeg" alt="">
     </div>
 
     <div class="multiple-choice-container">
@@ -53,6 +54,7 @@
 </template>
 
 <style>
+
 .photo-container img {
   width: inherit;
 }
