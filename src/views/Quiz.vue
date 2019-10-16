@@ -26,15 +26,15 @@
     </div>
 
     <div class="photo-container">
-      <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" src="/images/JenniferLawrence.jpg" alt="">
+      <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" src="/images/JasonMomoa.jpg" alt="">
     </div>
 
     <div class="multiple-choice-container">
-      <button v-on:click="selectName()">A. {{ quizName }}</button>
-      <button v-on:click="selectName()">B. {{ quizName }}</button>        
-      <button v-on:click="selectName()">C. {{ quizName }}</button>
-      <button v-on:click="selectName()">D. {{ quizName }}</button>
-      <button v-on:click="selectName()">E. {{ quizName}}</button>
+      <button v-on:click="selectName('A')">A. {{ currentQuestion.possibleAnswers["A"] }}</button>
+      <button v-on:click="selectName('B')">B. {{ currentQuestion.possibleAnswers["B"] }}</button>        
+      <button v-on:click="selectName('C')">C. {{ currentQuestion.possibleAnswers["C"] }}</button>
+      <button v-on:click="selectName('D')">D. {{ currentQuestion.possibleAnswers["D"] }}</button>
+      <button v-on:click="selectName('E')">E. {{ currentQuestion.possibleAnswers["E"]}}</button>
     </div>
 
 <!-- <div class="photo-from-rails">
@@ -75,11 +75,103 @@ export default {
       blurryAmount: 50,
       quizName: {},
       currentScore: 0,
-      image: ""
-
-    };
+      image: "",
+      currentQuestionIndex: 0,
+      currentQuestion: {
+        celebrity: "",
+        possibleAnswers: {
+          A: "",
+          B: "",
+          C: "", 
+          D: "", 
+          E: ""
+        },
+        correctAnswer: ''
+      },
+      quizQuestions:[
+      {
+        celebrity: "Jason Momoa",
+        possibleAnswers: {
+          A: "Roman Reigns",
+          B: "Jack Matthews",
+          C: "Jason Momoa", 
+          D: "Russell Brand", 
+          E: "Keanu Reeves"
+        },
+        correctAnswer: 'C'
+      },
+      {
+        celebrity: "Jennifer Lawrence",
+        possibleAnswers: {
+          A: "Haley Bennett",
+          B: "Taylor Swift",
+          C: "Jennifer Lawrence", 
+          D: "Shailene Woodley", 
+          E: "Jennifer Lawrence"
+        },
+        correctAnswer: 'E'
+      },
+      {
+        celebrity: "Nicki Minaj",
+        possibleAnswers: {
+          A: "Cardi B",
+          B: "Nicki Minaj",
+          C: "Raven Symone", 
+          D: "Nicki Minaj", 
+          E: "Zendaya Coleman"
+        },
+        correctAnswer: 'B'
+      },
+      {
+        celebrity: "Robert Downey Jr.",
+        possibleAnswers: {
+          A: "Hugh Jackman",
+          B: "Omar Metwally",
+          C: "Robert Downey Jr.", 
+          D: "Johnny Depp", 
+          E: "Jeffery Dean Morgan"
+        },
+        correctAnswer: 'C'
+      },
+      {
+        celebrity: "Daniel Radcliffe",
+        possibleAnswers: {
+          A: "Elijah Wood",
+          B: "Daniel Radcliffe",
+          C: "Liam Hemsworth", 
+          D: "Tobey Maguire", 
+          E: "Justin Timberlake"
+        },
+        correctAnswer: 'B'
+      },
+      {
+        celebrity: "Rihanna",
+        possibleAnswers: {
+          A: "Rihanna",
+          B: "Megan Fox",
+          C: "Cardi B", 
+          D: "Rihanna", 
+          E: "Camila Cabello"
+        },
+        correctAnswer: 'A'
+      },
+      {
+        celebrity: "Johnny Depp",
+        possibleAnswers: {
+          A: "Tyler Blackburn",
+          B: "Skeet Ulrich",
+          C: "John Mayer", 
+          D: "Johnny Depp", 
+          E: "Robert Pattinson"
+        },
+        correctAnswer: 'D'
+      }
+    ],
+    }
   },
-  created: function() {},
+  created: function() {
+    this.currentQuestion = this.quizQuestions[this.currentQuestionIndex];
+  },
   methods: {
     startQuiz: function() {},
     setFile: function(event) {
