@@ -25,6 +25,11 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #0a0909;
+}
+
+body {
+  font-family: "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+  background-image: url('/images/background_image.jpeg');
 }
 </style>
