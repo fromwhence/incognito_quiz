@@ -18,7 +18,7 @@
     <br>
       
     <div class="blur-buttons">
-      <input type="number" v-model="blurryAmount">
+      <!-- <input type="number" v-model="blurryAmount"> -->
       <button v-on:click="blurryAmount = 50">5</button>
       <button v-on:click="blurryAmount = 40">4</button>
       <button v-on:click="blurryAmount = 30">3</button>
@@ -113,7 +113,7 @@ export default {
         possibleAnswers: {
           A: "Haley Bennett",
           B: "Taylor Swift",
-          C: "Jennifer Lawrence", 
+          C: "Lady Gaga", 
           D: "Shailene Woodley", 
           E: "Jennifer Lawrence"
         },
@@ -195,30 +195,20 @@ export default {
       }
     },
     selectName: function(option) {
-      console.log(option); // testing only
-      console.log(this.currentQuestion.correctAnswer); // testing only
       if (option === this.currentQuestion.correctAnswer) {
+        this.currentScore += this.blurryAmount / 10;
         this.blurryAmount = 0;
-        console.log("Congratulations!") // testing
       } else {
         this.blurryAmount -= 10;
-      }
-    },
-    trackScore: function(option) {
-      if (option === this.currentQuestion.correctAnswer) {
-        this.currentScore === 5;
-        console.log("5 points!")
+
       }
     },
     nextQuestion: function() {
         this.currentQuestionIndex ++
-
-          this.currentQuestion = this.quizQuestions[this.currentQuestionIndex]
-          this.blurryAmount = 50
+        this.currentQuestion = this.quizQuestions[this.currentQuestionIndex]
+        this.blurryAmount = 50
 
     }
-
-
   }
 };
 </script>
