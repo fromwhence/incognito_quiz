@@ -126,7 +126,7 @@ export default {
           A: "Cardi B",
           B: "Nicki Minaj",
           C: "Raven Symone", 
-          D: "Nicki Minaj", 
+          D: "Lil' Kim", 
           E: "Zendaya Coleman"
         },
         correctAnswer: 'B'
@@ -157,12 +157,12 @@ export default {
       },
       {
         celebrity: "Rihanna",
-        imagePath: "/images/Rihanna.jpg",
+        imagePath: "/images/Rihanna.jpeg",
         possibleAnswers: {
           A: "Rihanna",
           B: "Megan Fox",
           C: "Cardi B", 
-          D: "Rihanna", 
+          D: "Zoe Saldana", 
           E: "Camila Cabello"
         },
         correctAnswer: 'A'
@@ -204,10 +204,15 @@ export default {
       }
     },
     nextQuestion: function() {
-        this.currentQuestionIndex ++
-        this.currentQuestion = this.quizQuestions[this.currentQuestionIndex]
-        this.blurryAmount = 50
-
+        this.currentQuestionIndex ++;
+        this.currentQuestion = this.quizQuestions[this.currentQuestionIndex];
+        this.blurryAmount = 50;
+    },
+    quitQuiz: function() {
+        this.currentQuestionIndex[1];
+        this.currentQuestion = this.quizQuestions[this.currentQuestionIndex[1]];
+        console.log("Back to the first image");
+        this.blurryAmount = 50;
     }
   }
 };
