@@ -2,7 +2,7 @@
   <div class="quiz">
     <div>
 
-      <h1>INCOGNITO QUIZ</h1>
+      <h1>Incognito Quiz</h1>
     </div>
     <div>
       <h3>Instructions:</h3>
@@ -15,6 +15,7 @@
     <div>
       <button v-on:click="startQuiz">Start</button>
     </div>
+    <br>
       
     <div class="blur-buttons">
       <input type="number" v-model="blurryAmount">
@@ -93,6 +94,7 @@ export default {
       quizQuestions:[
       {
         celebrity: "Jason Momoa",
+        imagePath: "/images/JasonMomoa.jpg"
         possibleAnswers: {
           A: "Roman Reigns",
           B: "Jack Matthews",
@@ -175,7 +177,14 @@ export default {
     this.currentQuestion = this.quizQuestions[this.currentQuestionIndex];
   },
   methods: {
-    startQuiz: function() {},
+    startQuiz: function() {
+      if ()
+
+
+
+
+
+    },
     setFile: function(event) {
       if (event.target.files.length > 0) {
         this.image = event.target.files[0];
