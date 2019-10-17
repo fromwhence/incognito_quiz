@@ -27,27 +27,29 @@
       <button v-on:click="blurryAmount = 0">0</button>
     </div>
 
-    <div class="photo-container">
-      <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" src="/images/Rihanna.jpeg" alt="">
-    </div>
+    <div class="main-quiz-content-container">
+      <div class="photo-container">
+        <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" v-bind:src="currentQuestion.imagePath" alt="">
+      </div>
 
-    <div class="multiple-choice-container">
-      <button v-on:click="selectName('A')">A. {{ currentQuestion.possibleAnswers["A"] }}</button>
-      <button v-on:click="selectName('B')">B. {{ currentQuestion.possibleAnswers["B"] }}</button>        
-      <button v-on:click="selectName('C')">C. {{ currentQuestion.possibleAnswers["C"] }}</button>
-      <button v-on:click="selectName('D')">D. {{ currentQuestion.possibleAnswers["D"] }}</button>
-      <button v-on:click="selectName('E')">E. {{ currentQuestion.possibleAnswers["E"]}}</button>
+      <div>
+        <h2>Score: {{ currentScore }} </h2>
+      </div> 
+
+      <div class="multiple-choice-container">
+        <button v-on:click="selectName('A')">A. {{ currentQuestion.possibleAnswers["A"] }}</button>
+        <button v-on:click="selectName('B')">B. {{ currentQuestion.possibleAnswers["B"] }}</button>        
+        <button v-on:click="selectName('C')">C. {{ currentQuestion.possibleAnswers["C"] }}</button>
+        <button v-on:click="selectName('D')">D. {{ currentQuestion.possibleAnswers["D"] }}</button>
+        <button v-on:click="selectName('E')">E. {{ currentQuestion.possibleAnswers["E"] }}</button>
+      </div>
     </div>
 
 <!-- <div class="photo-from-rails">
       <img v-bind:src="images.photo" alt="blurry photo">
     </div> -->
-
-    <div>
-      <h2>Score: {{ currentScore }} </h2>
-    </div> 
- 
-    <div>
+    <div>   
+      <button v-on:click="nextQuestion()">Next Image</button>
       <button v-on:click="quitQuiz()">Quit Quiz</button>
     </div>
 
@@ -82,6 +84,7 @@ export default {
       currentQuestionIndex: 0,
       currentQuestion: {
         celebrity: "",
+        imagePath: "",
         possibleAnswers: {
           A: "",
           B: "",
@@ -94,7 +97,7 @@ export default {
       quizQuestions:[
       {
         celebrity: "Jason Momoa",
-        imagePath: "/images/JasonMomoa.jpg"
+        imagePath: "/images/JasonMomoa.jpg",
         possibleAnswers: {
           A: "Roman Reigns",
           B: "Jack Matthews",
@@ -106,6 +109,7 @@ export default {
       },
       {
         celebrity: "Jennifer Lawrence",
+        imagePath: "/images/JenniferLawrence.jpg",
         possibleAnswers: {
           A: "Haley Bennett",
           B: "Taylor Swift",
@@ -117,6 +121,7 @@ export default {
       },
       {
         celebrity: "Nicki Minaj",
+        imagePath: "/images/NickiMinaj.jpg",
         possibleAnswers: {
           A: "Cardi B",
           B: "Nicki Minaj",
@@ -128,6 +133,7 @@ export default {
       },
       {
         celebrity: "Robert Downey Jr.",
+        imagePath: "/images/RobertDowneyJr.jpg",
         possibleAnswers: {
           A: "Hugh Jackman",
           B: "Omar Metwally",
@@ -139,6 +145,7 @@ export default {
       },
       {
         celebrity: "Daniel Radcliffe",
+        imagePath: "/images/DanielRadcliffe.jpg",
         possibleAnswers: {
           A: "Elijah Wood",
           B: "Daniel Radcliffe",
@@ -150,6 +157,7 @@ export default {
       },
       {
         celebrity: "Rihanna",
+        imagePath: "/images/Rihanna.jpg",
         possibleAnswers: {
           A: "Rihanna",
           B: "Megan Fox",
@@ -161,6 +169,7 @@ export default {
       },
       {
         celebrity: "Johnny Depp",
+        imagePath: "/images/JohnnyDepp.jpg",
         possibleAnswers: {
           A: "Tyler Blackburn",
           B: "Skeet Ulrich",
@@ -178,20 +187,30 @@ export default {
   },
   methods: {
     startQuiz: function() {
-      if ()
-
-
-
-
-
+      if (true) {}
     },
     setFile: function(event) {
       if (event.target.files.length > 0) {
         this.image = event.target.files[0];
       }
     },
-    selectName: function() {
+    selectName: function(option) {
+      console.log(option); // testing only
+      console.log(this.currentQuestion.correctAnswer); // testing only
+      if (option === this.currentQuestion.correctAnswer) {
+        this.blurryAmount = 0;
+        console.log("Congratulations!") // testing
+      } else {
+        this.blurryAmount -= 10;
+      }
+    },
+    trackScore: function(option) {
+      if (option === this.currentQuestion.correctAnswer) {
+        this.currentScore === 5;
+        console.log("5 points!")
+      }
     }
+
   }
 };
 </script>
