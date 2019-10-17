@@ -47,9 +47,6 @@
 <!-- <div class="photo-from-rails">
       <img v-bind:src="images.photo" alt="blurry photo">
     </div> -->
-
-
- 
     <div>   
       <button v-on:click="nextQuestion()">Next Image</button>
       <button v-on:click="quitQuiz()">Quit Quiz</button>
@@ -111,6 +108,7 @@ export default {
       },
       {
         celebrity: "Jennifer Lawrence",
+        imagePath: "/images/JenniferLawrence.jpg",
         possibleAnswers: {
           A: "Haley Bennett",
           B: "Taylor Swift",
@@ -122,6 +120,7 @@ export default {
       },
       {
         celebrity: "Nicki Minaj",
+        imagePath: "/images/NickiMinaj.jpg",
         possibleAnswers: {
           A: "Cardi B",
           B: "Nicki Minaj",
@@ -133,6 +132,7 @@ export default {
       },
       {
         celebrity: "Robert Downey Jr.",
+        imagePath: "/images/RobertDowneyJr.jpg",
         possibleAnswers: {
           A: "Hugh Jackman",
           B: "Omar Metwally",
@@ -144,6 +144,7 @@ export default {
       },
       {
         celebrity: "Daniel Radcliffe",
+        imagePath: "/images/DanielRadcliffe.jpg",
         possibleAnswers: {
           A: "Elijah Wood",
           B: "Daniel Radcliffe",
@@ -155,6 +156,7 @@ export default {
       },
       {
         celebrity: "Rihanna",
+        imagePath: "/images/Rihanna.jpg",
         possibleAnswers: {
           A: "Rihanna",
           B: "Megan Fox",
@@ -166,6 +168,7 @@ export default {
       },
       {
         celebrity: "Johnny Depp",
+        imagePath: "/images/JohnnyDepp.jpg",
         possibleAnswers: {
           A: "Tyler Blackburn",
           B: "Skeet Ulrich",
@@ -193,14 +196,22 @@ export default {
       }
     },
     selectName: function(option) {
-      console.log(option);
-      console.log(this.currentQuestion.correctAnswer);
+      console.log(option); // testing only
+      console.log(this.currentQuestion.correctAnswer); // testing only
       if (option === this.currentQuestion.correctAnswer) {
         this.blurryAmount = 0;
+        console.log("Congratulations!") // testing
       } else {
         this.blurryAmount -= 10;
       }
+    },
+    trackScore: function(option) {
+      if (option === this.currentQuestion.correctAnswer) {
+        this.currentScore = 5;
+        console.logI("5 points!")
+      }
     }
+
   }
 };
 </script>
