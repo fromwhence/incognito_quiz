@@ -49,7 +49,7 @@
       <img v-bind:src="images.photo" alt="blurry photo">
     </div> -->
     <div>   
-      <button v-on:click="nextQuestion()">Next Image</button>
+      <button v-on:click="nextQuestion()">Next</button>
       <button v-on:click="quitQuiz()">Quit Quiz</button>
     </div>
 
@@ -209,7 +209,15 @@ export default {
         this.currentScore === 5;
         console.log("5 points!")
       }
+    },
+    nextQuestion: function() {
+        this.currentQuestionIndex ++
+
+          this.currentQuestion = this.quizQuestions[this.currentQuestionIndex]
+          this.blurryAmount = 50
+
     }
+
 
   }
 };
