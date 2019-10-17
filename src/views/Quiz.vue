@@ -207,8 +207,8 @@ export default {
     },
     trackScore: function(option) {
       if (option === this.currentQuestion.correctAnswer) {
-        this.currentScore = 5;
-        console.logI("5 points!")
+        this.currentScore === 5;
+        console.log("5 points!")
       }
     }
 
