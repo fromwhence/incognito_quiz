@@ -12,19 +12,16 @@
       </ol>
     </div>
 
-    <div>
-      <button v-on:click="startQuiz">Start</button>
-    </div>
     <br>
       
     <div class="blur-buttons">
-      <!-- <input type="number" v-model="blurryAmount"> -->
-      <button v-on:click="blurryAmount = 50">5</button>
-      <button v-on:click="blurryAmount = 40">4</button>
-      <button v-on:click="blurryAmount = 30">3</button>
-      <button v-on:click="blurryAmount = 20">2</button>
-      <button v-on:click="blurryAmount = 10">1</button>
-      <button v-on:click="blurryAmount = 0">0</button>
+      <input type="number" v-model="blurryAmount">
+      <button type="button" class="btn btn-outline-dark" v-on:click="blurryAmount = 50">5</button>
+      <button type="button" class="btn btn-outline-dark" v-on:click="blurryAmount = 40">4</button>
+      <button type="button" class="btn btn-outline-dark" v-on:click="blurryAmount = 30">3</button>
+      <button type="button" class="btn btn-outline-dark" v-on:click="blurryAmount = 20">2</button>
+      <button type="button" class="btn btn-outline-dark" v-on:click="blurryAmount = 10">1</button>
+      <button type="button" class="btn btn-outline-dark" v-on:click="blurryAmount = 0">0</button>
     </div>
 
     <div class="main-quiz-content-container">
@@ -32,17 +29,27 @@
         <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" v-bind:src="currentQuestion.imagePath" alt="">
       </div>
 
+     
       <div>
-        <h2>Score: {{ currentScore }} </h2>
+         <h2><span class="badge badge-dark">Score: {{ currentScore }} </span></h2>
       </div> 
 
       <div class="multiple-choice-container">
+        <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('A')">A. {{ currentQuestion.possibleAnswers["A"] }}</button>
+        <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('B')">B. {{ currentQuestion.possibleAnswers["B"] }}</button>        
+        <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('C')">C. {{ currentQuestion.possibleAnswers["C"] }}</button>
+        <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('D')">D. {{ currentQuestion.possibleAnswers["D"] }}</button>
+        <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('E')">E. {{ currentQuestion.possibleAnswers["E"] }}</button>
+        <br>
+      </div>
+
+<!--       <div class="multiple-choice-container">
         <button v-on:click="selectName('A')">A. {{ currentQuestion.possibleAnswers["A"] }}</button>
         <button v-on:click="selectName('B')">B. {{ currentQuestion.possibleAnswers["B"] }}</button>        
         <button v-on:click="selectName('C')">C. {{ currentQuestion.possibleAnswers["C"] }}</button>
         <button v-on:click="selectName('D')">D. {{ currentQuestion.possibleAnswers["D"] }}</button>
         <button v-on:click="selectName('E')">E. {{ currentQuestion.possibleAnswers["E"] }}</button>
-      </div>
+      </div> -->
     </div>
 
 <!-- <div class="photo-from-rails">
@@ -56,6 +63,8 @@
   </div>
 </template>
 
+
+
 <style>
 
 .photo-container img {
@@ -67,13 +76,17 @@
   width: 600px;
   margin: 0 auto;
 }
+
+.multiple-choice-container button {
+}
+
 </style>
 
 <script>
 export default {
   data: function() {
     return {
-      introStage: false,
+      // startQuiz: false,
       quizStage: false,
       resultsStage: false,
       currentPhoto: false,
@@ -126,7 +139,7 @@ export default {
           A: "Cardi B",
           B: "Nicki Minaj",
           C: "Raven Symone", 
-          D: "Nicki Minaj", 
+          D: "Lil' Kim", 
           E: "Zendaya Coleman"
         },
         correctAnswer: 'B'
@@ -162,7 +175,7 @@ export default {
           A: "Rihanna",
           B: "Megan Fox",
           C: "Cardi B", 
-          D: "Rihanna", 
+          D: "Zoe Saldana", 
           E: "Camila Cabello"
         },
         correctAnswer: 'A'
@@ -186,9 +199,10 @@ export default {
     this.currentQuestion = this.quizQuestions[this.currentQuestionIndex];
   },
   methods: {
-    startQuiz: function() {
-      if (true) {}
-    },
+    // startQuiz: function() {
+    //   this.currentQuestion = this.currentQuestionIndex[0];
+    //   this.blurryAmount = 50;
+    // },
     setFile: function(event) {
       if (event.target.files.length > 0) {
         this.image = event.target.files[0];
@@ -204,10 +218,14 @@ export default {
       }
     },
     nextQuestion: function() {
-        this.currentQuestionIndex ++
-        this.currentQuestion = this.quizQuestions[this.currentQuestionIndex]
-        this.blurryAmount = 50
-
+      this.currentQuestionIndex ++;
+      this.currentQuestion = this.quizQuestions[this.currentQuestionIndex];
+      this.blurryAmount = 50;
+    },
+    quitQuiz: function() {
+      this.currentQuestionIndex = 0 ;
+      this.currentQuestion = this.quizQuestions[this.currentQuestionIndex];
+      this.blurryAmount = 50;
     }
   }
 };
