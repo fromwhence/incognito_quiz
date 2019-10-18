@@ -7,7 +7,7 @@
     <div>
       <h3>Instructions:</h3>
       <ol>
-        <li>Guess the indenity of the blurry celebrity.</li>
+        <li>Guess the identity of the blurry celebrity.</li>
         <li>Win more points by correctly identifying the blurriest photo!</li>
       </ol>
     </div>
