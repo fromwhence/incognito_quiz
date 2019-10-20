@@ -15,7 +15,6 @@
           </ol>
         </div>
       </div>
-
       <br>
       <div class="photo-container">
         <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" v-bind:src="currentQuestion.imagePath" alt="">
@@ -37,7 +36,8 @@
  
       <div class="multiple-choice-container">
         <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('A')">A. {{ currentQuestion.possibleAnswers["A"] }}</button>
-        <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('B')">B. {{ currentQuestion.possibleAnswers["B"] }}</button>       <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('C')">C. {{ currentQuestion.possibleAnswers["C"] }}</button>
+        <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('B')">B. {{ currentQuestion.possibleAnswers["B"] }}</button>       
+        <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('C')">C. {{ currentQuestion.possibleAnswers["C"] }}</button>
         <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('D')">D. {{ currentQuestion.possibleAnswers["D"] }}</button>
         <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('E')">E. {{ currentQuestion.possibleAnswers["E"] }}</button>
         <br>
@@ -294,7 +294,6 @@ export default {
       this.currentQuestion = this.quizQuestions[this.currentQuestionIndex];
       this.blurryAmount = 40;
       this.currentScore = 0;
-
     }
   }
 };
