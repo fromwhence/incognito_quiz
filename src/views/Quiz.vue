@@ -5,17 +5,28 @@
       <h1>Incognito Quiz</h1>
     </div>
     <div>
-      <h3>Instructions:</h3>
+      <br>
+      <h3>How to Play:</h3>
+      <br>
       <ol>
         <li>Guess the identity of the blurry celebrity.</li>
         <li>Win more points by correctly identifying the blurriest photo!</li>
       </ol>
     </div>
+    <div v-if="currentScore === 35">
+      <img src="/images/leo.png">
+      <h2>You got the highest score!</h2>
+      
+    </div>
+    <div v-else>
+      <h5>Try and get the high score of 35</h5>
+    </div>
+
 
     <br>
       
     <div class="blur-buttons">
-      <input type="number" v-model="blurryAmount">
+      
       <button type="button" class="btn btn-outline-dark" v-on:click="blurryAmount = 50">5</button>
       <button type="button" class="btn btn-outline-dark" v-on:click="blurryAmount = 40">4</button>
       <button type="button" class="btn btn-outline-dark" v-on:click="blurryAmount = 30">3</button>
@@ -61,6 +72,7 @@
     </div>
 
   </div>
+
 </template>
 
 
@@ -226,6 +238,8 @@ export default {
       this.currentQuestionIndex = 0 ;
       this.currentQuestion = this.quizQuestions[this.currentQuestionIndex];
       this.blurryAmount = 50;
+      this.currentScore = 0;
+
     }
   }
 };
