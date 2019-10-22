@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Quiz from './views/Quiz.vue'
+import Quiz from './views/QuizLt.vue'
 
 Vue.use(Router)
 
