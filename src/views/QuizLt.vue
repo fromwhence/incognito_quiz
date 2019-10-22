@@ -81,8 +81,8 @@
 /*  line-height: 20vw;*/
   text-shadow: 0 0 3vw #F40A35;
   float: right;
-  padding-right: 40px;
-  margin-bottom: 15px;
+  padding-right: 42px;
+  margin-bottom: 13px;
 }
 
 .instructions {
