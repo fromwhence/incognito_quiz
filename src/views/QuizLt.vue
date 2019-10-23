@@ -1,61 +1,56 @@
 <template>
   <div class="quiz">
-    <div v-if="currentQuestionIndex !== quizQuestions.length">
-    
-      <div class="left-column">
-        <div class="quiz-name">
-          <h1>Incognito Quiz</h1>
-        </div>
-        <div class="instructions">
-          <div>
-            <h3>Instructions:</h3>
-          </div>
-          <div>
-            <ol>
-              <li>Guess the idenity of the blurry celebrity.</li>
-              <li>Win more points by correctly identifying the blurriest photo!</li>
-            </ol>
-          </div>
-        </div>
-        <br>
-        <div class="photo-container">
-          <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" v-bind:src="currentQuestion.imagePath" alt="">
-        </div>
+    <div class="left-column">
+      <div class="quiz-name">
+        <h1>Incognito Quiz</h1>
       </div>
-
-      <div class="right-column">
+      <div class="instructions">
         <div>
-           <h2 v-bind:class="currentScore" class="current-score-button"><span class="badge badge-dark">Score: {{ currentScore }} </span></h2>
-           
+          <h3>Instructions:</h3>
         </div>
-          <!-- <h5 v-if="option != currentQuestion.correctAnswer"  -->
-
-        <div class="blur-buttons">
-          <button type="button" class="btn btn-outline-dark" v-bind:class="{ 'complete-level': blurryAmount <= 40 }">4</button>
-          <button type="button" class="btn btn-outline-dark" v-bind:class="{ 'complete-level': blurryAmount <= 30 }">3</button>
-          <button type="button" class="btn btn-outline-dark" v-bind:class="{ 'complete-level': blurryAmount <= 20 }">2</button>
-          <button type="button" class="btn btn-outline-dark" v-bind:class="{ 'complete-level': blurryAmount <= 10 }">1</button>
-          <button type="button" class="btn btn-outline-dark" v-bind:class="{ 'complete-level': blurryAmount <= 0 }">0</button>
-        </div>
-   
-        <div class="multiple-choice-container">
-          <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('A')">A. {{ currentQuestion.possibleAnswers["A"] }}</button>
-          <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('B')">B. {{ currentQuestion.possibleAnswers["B"] }}</button>       
-          <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('C')">C. {{ currentQuestion.possibleAnswers["C"] }}</button>
-          <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('D')">D. {{ currentQuestion.possibleAnswers["D"] }}</button>
-          <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('E')">E. {{ currentQuestion.possibleAnswers["E"] }}</button>
-          <br>
-        </div>
-
-        <div class="next-quit-buttons">   
-          <button type="button" class="btn btn-outline-secondary" v-on:click="nextQuestion()">Next</button>
-          <button type="button" class="btn btn-outline-secondary" v-on:click="quitQuiz()">Quit Quiz</button>
+        <div>
+          <ol>
+            <li>Guess the idenity of the blurry celebrity.</li>
+            <li>Win more points by correctly identifying the blurriest photo!</li>
+          </ol>
         </div>
       </div>
+      <br>
+      <div class="photo-container">
+        <img v-bind:style="{filter: 'blur(' + blurryAmount + 'px)'}" v-bind:src="currentQuestion.imagePath" alt="">
+      </div>
     </div>
-    <div v-else><h2 class="final-score-button"><img src="/images/leo.png"><span class="badge badge-dark">Final Score: {{ currentScore }} / 28 </span></h2>
 
+    <div class="right-column">
+      <div>
+         <h2 v-bind:class="currentScore" class="current-score-button"><span class="badge badge-dark">Score: {{ currentScore }} </span></h2>
+         <h2 v-if="currentQuestionIndex === 6" class="final-score-button"><span class="badge badge-dark">Final Score: {{ currentScore }} / 28 </span></h2>
+      </div>
+        <!-- <h5 v-if="option != currentQuestion.correctAnswer"  -->
+
+      <div class="blur-buttons">
+        <button type="button" class="btn btn-outline-dark" v-bind:class="{ 'complete-level': blurryAmount <= 40 }">4</button>
+        <button type="button" class="btn btn-outline-dark" v-bind:class="{ 'complete-level': blurryAmount <= 30 }">3</button>
+        <button type="button" class="btn btn-outline-dark" v-bind:class="{ 'complete-level': blurryAmount <= 20 }">2</button>
+        <button type="button" class="btn btn-outline-dark" v-bind:class="{ 'complete-level': blurryAmount <= 10 }">1</button>
+        <button type="button" class="btn btn-outline-dark" v-bind:class="{ 'complete-level': blurryAmount <= 0 }">0</button>
+      </div>
+ 
+      <div class="multiple-choice-container">
+        <button type="button" v-bind:class="{ selected: selectedButton['A'], selectedcorrect: correctButton['A'] }" class="btn btn-outline-secondary" v-on:click="selectName('A')">A. {{ currentQuestion.possibleAnswers["A"] }}</button>
+        <button type="button" v-bind:class="{ selected: selectedButton['B'], selectedcorrect: correctButton['B'] }" class="btn btn-outline-secondary" v-on:click="selectName('B')">B. {{ currentQuestion.possibleAnswers["B"] }}</button>       
+        <button type="button" v-bind:class="{ selected: selectedButton['C'], selectedcorrect: correctButton['C'] }" class="btn btn-outline-secondary" v-on:click="selectName('C')">C. {{ currentQuestion.possibleAnswers["C"] }}</button>
+        <button type="button" v-bind:class="{ selected: selectedButton['D'], selectedcorrect: correctButton['D'] }" class="btn btn-outline-secondary" v-on:click="selectName('D')">D. {{ currentQuestion.possibleAnswers["D"] }}</button>
+        <button type="button" v-bind:class="{ selected: selectedButton['E'], selectedcorrect: correctButton['E'] }" class="btn btn-outline-secondary" v-on:click="selectName('E')">E. {{ currentQuestion.possibleAnswers["E"] }}</button>
+        <br>
+      </div>
+
+      <div class="next-quit-buttons">   
+        <button type="button" class="btn btn-outline-secondary" v-on:click="nextQuestion()">Next</button>
+        <button type="button" class="btn btn-outline-secondary" v-on:click="quitQuiz()">Quit Quiz</button>
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -157,8 +152,13 @@
   padding: 14px 30px;
 }
 
-.multiple-choice-container button:focus {
-  color: #b7c0c9;
+.multiple-choice-container .selected {
+  color: #dce3ea;
+}
+
+.multiple-choice-container .selectedcorrect {
+  color: black;
+  background-color: #cff7fc;
 }
 
 .current-score-button span {
@@ -203,10 +203,19 @@ export default {
       currentPhoto: false,
       blurryAmount: 40,
       activeColor: 'red',
-      wrongButton: "",
-      correctButton: "",
+      correctButton: {
+        A: false,
+        B: false,
+        C: false, 
+        D: false, 
+        E: false
+      },
       selectedButton: {
-        color: 'black',
+        A: false,
+        B: false,
+        C: false, 
+        D: false, 
+        E: false
       },
       quizName: {},
       currentScore: 0,
@@ -309,7 +318,7 @@ export default {
           E: "Robert Pattinson"
         },
         correctAnswer: 'D'
-      }
+      },
     ],
     }
   },
@@ -325,9 +334,11 @@ export default {
       }
     },
     selectName: function(option) {
+      this.selectedButton[option] = true;
       if (option === this.currentQuestion.correctAnswer) {
         this.currentScore += this.blurryAmount / 10;
         this.blurryAmount = 0;
+        this.correctButton[option] = true;
       } else {
         this.blurryAmount -= 10;
       }
@@ -336,21 +347,15 @@ export default {
       this.currentQuestionIndex ++;
       this.currentQuestion = this.quizQuestions[this.currentQuestionIndex];
       this.blurryAmount = 40;
+      this.selectedButton = {};
+      this.correctButton = {};
     },
     quitQuiz: function() {
       this.currentQuestionIndex = 0 ;
       this.currentQuestion = this.quizQuestions[this.currentQuestionIndex];
       this.blurryAmount = 40;
       this.currentScore = 0;
-    },
-    finalButton: function() {
-      if (this.currentQuestionIndex === 7) {
-        this.blurryAmount = 0;
-
-
-      }
     }
-
     
   }
 };
