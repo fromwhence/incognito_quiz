@@ -318,7 +318,7 @@ export default {
           E: "Robert Pattinson"
         },
         correctAnswer: 'D'
-      }
+      },
     ],
     }
   },
