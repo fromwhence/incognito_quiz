@@ -37,11 +37,11 @@
       </div>
  
       <div class="multiple-choice-container">
-        <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('A')">A. {{ currentQuestion.possibleAnswers["A"] }}</button>
-        <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('B')">B. {{ currentQuestion.possibleAnswers["B"] }}</button>       
-        <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('C')">C. {{ currentQuestion.possibleAnswers["C"] }}</button>
-        <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('D')">D. {{ currentQuestion.possibleAnswers["D"] }}</button>
-        <button type="button" class="btn btn-outline-secondary" v-on:click="selectName('E')">E. {{ currentQuestion.possibleAnswers["E"] }}</button>
+        <button type="button" v-bind:class="{ selected: selectedButton['A'], selectedcorrect: correctButton['A'] }" class="btn btn-outline-secondary" v-on:click="selectName('A')">A. {{ currentQuestion.possibleAnswers["A"] }}</button>
+        <button type="button" v-bind:class="{ selected: selectedButton['B'], selectedcorrect: correctButton['B'] }" class="btn btn-outline-secondary" v-on:click="selectName('B')">B. {{ currentQuestion.possibleAnswers["B"] }}</button>       
+        <button type="button" v-bind:class="{ selected: selectedButton['C'], selectedcorrect: correctButton['C'] }" class="btn btn-outline-secondary" v-on:click="selectName('C')">C. {{ currentQuestion.possibleAnswers["C"] }}</button>
+        <button type="button" v-bind:class="{ selected: selectedButton['D'], selectedcorrect: correctButton['D'] }" class="btn btn-outline-secondary" v-on:click="selectName('D')">D. {{ currentQuestion.possibleAnswers["D"] }}</button>
+        <button type="button" v-bind:class="{ selected: selectedButton['E'], selectedcorrect: correctButton['E'] }" class="btn btn-outline-secondary" v-on:click="selectName('E')">E. {{ currentQuestion.possibleAnswers["E"] }}</button>
         <br>
       </div>
 
@@ -152,8 +152,13 @@
   padding: 14px 30px;
 }
 
-.multiple-choice-container button:focus {
-  color: #b7c0c9;
+.multiple-choice-container .selected {
+  color: #dce3ea;
+}
+
+.multiple-choice-container .selectedcorrect {
+  color: black;
+  background-color: #cff7fc;
 }
 
 .current-score-button span {
@@ -198,10 +203,19 @@ export default {
       currentPhoto: false,
       blurryAmount: 40,
       activeColor: 'red',
-      wrongButton: "",
-      correctButton: "",
+      correctButton: {
+        A: false,
+        B: false,
+        C: false, 
+        D: false, 
+        E: false
+      },
       selectedButton: {
-        color: 'black',
+        A: false,
+        B: false,
+        C: false, 
+        D: false, 
+        E: false
       },
       quizName: {},
       currentScore: 0,
@@ -320,9 +334,11 @@ export default {
       }
     },
     selectName: function(option) {
+      this.selectedButton[option] = true;
       if (option === this.currentQuestion.correctAnswer) {
         this.currentScore += this.blurryAmount / 10;
         this.blurryAmount = 0;
+        this.correctButton[option] = true;
       } else {
         this.blurryAmount -= 10;
       }
@@ -331,6 +347,8 @@ export default {
       this.currentQuestionIndex ++;
       this.currentQuestion = this.quizQuestions[this.currentQuestionIndex];
       this.blurryAmount = 40;
+      this.selectedButton = {};
+      this.correctButton = {};
     },
     quitQuiz: function() {
       this.currentQuestionIndex = 0 ;
