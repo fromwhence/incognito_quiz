@@ -1,5 +1,6 @@
 <template>
   <div class="quiz">
+    <div v-if="currentQuestionIndex !== quizQuestions.length">
     <div class="left-column">
       <div class="quiz-name">
         <h1>Incognito Quiz</h1>
@@ -24,10 +25,8 @@
     <div class="right-column">
       <div>
          <h2 v-bind:class="currentScore" class="current-score-button"><span class="badge badge-dark">Score: {{ currentScore }} </span></h2>
-         <h2 v-if="currentQuestionIndex === 6" class="final-score-button"><span class="badge badge-dark">Final Score: {{ currentScore }} / 28 </span></h2>
+        </h2>
       </div>
-        <!-- <h5 v-if="option != currentQuestion.correctAnswer"  -->
-
       <div class="blur-buttons">
         <button type="button" class="btn btn-outline-dark" v-bind:class="{ 'complete-level': blurryAmount <= 40 }">4</button>
         <button type="button" class="btn btn-outline-dark" v-bind:class="{ 'complete-level': blurryAmount <= 30 }">3</button>
@@ -50,7 +49,26 @@
         <button type="button" class="btn btn-outline-secondary" v-on:click="quitQuiz()">Quit Quiz</button>
       </div>
     </div>
+  </div>
 
+  <div v-else>
+    <div class="left-column">
+    <div class="quiz-name">
+      <h1>Incognito Quiz</h1>
+    </div>
+    <br>
+    <div class="photo-container">
+      <img src="/images/leo.png" alt="">
+    </div>
+    </div>
+
+    <div class="right-column">
+      <div>
+         <h2 class="final-score-button"><span class="badge badge-dark">Final Score: {{ currentScore }} / 28 </span></h2>
+      </div>
+    </div>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -79,7 +97,6 @@
   font-family: neon;
   color: #FB4264;
   font-size: 66px;
-/*  line-height: 20vw;*/
   text-shadow: 0 0 3vw #F40A35;
   float: right;
   padding-right: 42px;
@@ -117,7 +134,6 @@
   border-width: 1px;
   border-radius: 2px;
   border-color: #6c757d;
-/*  margin: 0 auto;*/
 }
 
 .blur-buttons button {
@@ -355,6 +371,8 @@ export default {
       this.currentQuestion = this.quizQuestions[this.currentQuestionIndex];
       this.blurryAmount = 40;
       this.currentScore = 0;
+      this.correctButton = {};
+      this.selectedButton = {};
     }
     
   }
