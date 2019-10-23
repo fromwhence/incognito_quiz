@@ -24,8 +24,9 @@
     <div class="right-column">
       <div>
          <h2 v-bind:class="currentScore" class="current-score-button"><span class="badge badge-dark">Score: {{ currentScore }} </span></h2>
-         <!-- <h2 v-bind:class="finalScore" class="final-score-button"><span class="badge badge-dark">Final Score: {{ currentScore }} / 28 </span></h2> -->
+         <h2 v-if="currentQuestionIndex === 6" class="final-score-button"><span class="badge badge-dark">Final Score: {{ currentScore }} / 28 </span></h2>
       </div>
+        <!-- <h5 v-if="option != currentQuestion.correctAnswer"  -->
 
       <div class="blur-buttons">
         <button type="button" class="btn btn-outline-dark" v-bind:class="{ 'complete-level': blurryAmount <= 40 }">4</button>
@@ -337,10 +338,7 @@ export default {
       this.blurryAmount = 40;
       this.currentScore = 0;
     }
-    // finalScore: function() {
-    //   if (this.currentQuestionIndex = 6 && option === this.currentQuestion.correct) {
-    //   }
-    // }
+    
   }
 };
 </script>
