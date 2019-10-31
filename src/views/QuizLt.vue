@@ -214,11 +214,8 @@ export default {
   data: function() {
     return {
       // startQuiz: false,
-      quizStage: false,
-      resultsStage: false,
       currentPhoto: false,
       blurryAmount: 40,
-      activeColor: 'red',
       correctButton: {
         A: false,
         B: false,
