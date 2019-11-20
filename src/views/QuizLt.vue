@@ -1,5 +1,6 @@
 <template>
   <div class="quiz">
+    <div v-if="currentQuestionIndex !== quizQuestions.length">
     <div class="left-column">
       <div class="quiz-name">
         <h1>Incognito Quiz</h1>
@@ -24,10 +25,8 @@
     <div class="right-column">
       <div>
          <h2 v-bind:class="currentScore" class="current-score-button"><span class="badge badge-dark">Score: {{ currentScore }} </span></h2>
-         <h2 v-if="currentQuestionIndex === 6" class="final-score-button"><span class="badge badge-dark">Final Score: {{ currentScore }} / 28 </span></h2>
+        </h2>
       </div>
-        <!-- <h5 v-if="option != currentQuestion.correctAnswer"  -->
-
       <div class="blur-buttons">
         <button type="button" class="btn btn-outline-dark" v-bind:class="{ 'complete-level': blurryAmount <= 40 }">4</button>
         <button type="button" class="btn btn-outline-dark" v-bind:class="{ 'complete-level': blurryAmount <= 30 }">3</button>
@@ -50,7 +49,26 @@
         <button type="button" class="btn btn-outline-secondary" v-on:click="quitQuiz()">Quit Quiz</button>
       </div>
     </div>
+  </div>
 
+  <div v-else>
+    <div class="left-column-final">
+    <div class="quiz-name-final">
+      <h1>Incognito Quiz</h1>
+    </div>
+    <br>
+    <div class="photo-container-final">
+      <img src="/images/leo.png" alt="">
+    </div>
+    </div>
+
+    <div class="right-column-final">
+      <div>
+         <h2 class="final-score"><span class="badge badge-dark">Final Score: {{ currentScore }} / 28 </span></h2>
+      </div>
+    </div>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -63,7 +81,7 @@
 
 .left-column {
   float: left;
-  width: 50%;
+  width: 53%;
   margin-top: 15px;
   padding-top: 25px;
   padding-right: 0px;
@@ -72,18 +90,42 @@
 .right-column {
   float: left;
   padding-top: 150px;
-  padding-left: 115px;
+  padding-left: 110px;
 }
+
+.left-column-final {
+  float: left;
+  width: 55%;
+  margin-top: 85px;
+  padding-top: 25px;
+  padding-right: 0px;
+}
+
+.right-column-final {
+  float: left;
+  padding-top: 220px;
+  padding-left: 35px;
+}
+
 
 .quiz-name h1 {
   font-family: neon;
   color: #FB4264;
   font-size: 66px;
-/*  line-height: 20vw;*/
   text-shadow: 0 0 3vw #F40A35;
   float: right;
   padding-right: 42px;
   margin-bottom: 13px;
+}
+
+.quiz-name-final h1 {
+  font-family: neon;
+  color: #FB4264;
+  font-size: 70px;
+  text-shadow: 0 0 3vw #F40A35;
+  float: right;
+  padding-right: 8px;
+  margin-bottom: 18px;
 }
 
 .instructions {
@@ -95,7 +137,7 @@
   float: right;
   font-size: 30px;
   padding-right: 425px;
-  color: #ff0202;
+  color: black;
 }
 
 .instructions ol {
@@ -117,7 +159,21 @@
   border-width: 1px;
   border-radius: 2px;
   border-color: #6c757d;
-/*  margin: 0 auto;*/
+}
+
+.photo-container-final img {
+  width: inherit; 
+  padding: 10px;
+}
+
+.photo-container-final {
+  overflow: hidden;
+  width: 600px;
+  float: right;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2px;
+  border-color: #6c757d;
 }
 
 .blur-buttons button {
@@ -169,10 +225,10 @@
   margin-bottom: 25px;
 }
 
-.final-score-button span {
-  font-size: 36px;
-  padding: 15px;
-  width: 330px;
+.final-score span {
+  font-size: 40px;
+  padding: 20px;
+  width: 350px;
   margin-left: 30px;
   margin-bottom: 25px;
 }
@@ -198,11 +254,8 @@ export default {
   data: function() {
     return {
       // startQuiz: false,
-      quizStage: false,
-      resultsStage: false,
       currentPhoto: false,
       blurryAmount: 40,
-      activeColor: 'red',
       correctButton: {
         A: false,
         B: false,
@@ -355,6 +408,8 @@ export default {
       this.currentQuestion = this.quizQuestions[this.currentQuestionIndex];
       this.blurryAmount = 40;
       this.currentScore = 0;
+      this.correctButton = {};
+      this.selectedButton = {};
     }
     
   }
