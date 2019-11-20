@@ -52,19 +52,19 @@
   </div>
 
   <div v-else>
-    <div class="left-column">
-    <div class="quiz-name">
+    <div class="left-column-final">
+    <div class="quiz-name-final">
       <h1>Incognito Quiz</h1>
     </div>
     <br>
-    <div class="photo-container">
+    <div class="photo-container-final">
       <img src="/images/leo.png" alt="">
     </div>
     </div>
 
-    <div class="right-column">
+    <div class="right-column-final">
       <div>
-         <h2 class="final-score-button"><span class="badge badge-dark">Final Score: {{ currentScore }} / 28 </span></h2>
+         <h2 class="final-score"><span class="badge badge-dark">Final Score: {{ currentScore }} / 28 </span></h2>
       </div>
     </div>
     </div>
@@ -81,7 +81,7 @@
 
 .left-column {
   float: left;
-  width: 50%;
+  width: 53%;
   margin-top: 15px;
   padding-top: 25px;
   padding-right: 0px;
@@ -90,8 +90,23 @@
 .right-column {
   float: left;
   padding-top: 150px;
-  padding-left: 115px;
+  padding-left: 110px;
 }
+
+.left-column-final {
+  float: left;
+  width: 55%;
+  margin-top: 85px;
+  padding-top: 25px;
+  padding-right: 0px;
+}
+
+.right-column-final {
+  float: left;
+  padding-top: 220px;
+  padding-left: 35px;
+}
+
 
 .quiz-name h1 {
   font-family: neon;
@@ -103,6 +118,16 @@
   margin-bottom: 13px;
 }
 
+.quiz-name-final h1 {
+  font-family: neon;
+  color: #FB4264;
+  font-size: 70px;
+  text-shadow: 0 0 3vw #F40A35;
+  float: right;
+  padding-right: 8px;
+  margin-bottom: 18px;
+}
+
 .instructions {
   float: right;
   margin-bottom: 10px;
@@ -112,7 +137,7 @@
   float: right;
   font-size: 30px;
   padding-right: 425px;
-  color: #ff0202;
+  color: black;
 }
 
 .instructions ol {
@@ -127,6 +152,21 @@
 }
 
 .photo-container {
+  overflow: hidden;
+  width: 600px;
+  float: right;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2px;
+  border-color: #6c757d;
+}
+
+.photo-container-final img {
+  width: inherit; 
+  padding: 10px;
+}
+
+.photo-container-final {
   overflow: hidden;
   width: 600px;
   float: right;
@@ -185,10 +225,10 @@
   margin-bottom: 25px;
 }
 
-.final-score-button span {
-  font-size: 36px;
-  padding: 15px;
-  width: 330px;
+.final-score span {
+  font-size: 40px;
+  padding: 20px;
+  width: 350px;
   margin-left: 30px;
   margin-bottom: 25px;
 }
